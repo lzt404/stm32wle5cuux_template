@@ -1,0 +1,6 @@
+{
+    "cortex-debug.liveWatchRefreshRate": 1000,
+    "cortex-debug.armToolchainPath": "",
+    "cortex-debug.openocdPath": "",
+    "cortex-debug.variableUseNaturalFormat": true,
+}
