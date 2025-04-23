@@ -204,7 +204,11 @@ TARGET_SCRIPT := target/stm32wlx.cfg             # 目标芯片配置文件
 INTERFACE_SCRIPT := interface/cmsis-dap.cfg         # 调试器接口配置文件
 ELF_FILE := build/$(TARGET).elf                # 要烧录的 ELF 文件
 
-flash:all
+flash:
+	@if [ ! -f $(ELF_FILE) ]; then \
+		echo "Build not found, compiling with 15 threads..."; \
+		$(MAKE) -j15 all; \
+	fi
 	@echo "Flashing $(ELF_FILE) to target..."
 	openocd -s $(OPENOCD_SCRIPT_DIR) \
         -f $(INTERFACE_SCRIPT) \
