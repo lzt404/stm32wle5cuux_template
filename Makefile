@@ -205,10 +205,9 @@ INTERFACE_SCRIPT := interface/cmsis-dap.cfg         # 调试器接口配置文�
 ELF_FILE := build/$(TARGET).elf                # 要烧录的 ELF 文件
 
 flash:
-	@if [ ! -f $(ELF_FILE) ]; then \
-		echo "Build not found, compiling with 15 threads..."; \
-		$(MAKE) -j15 all; \
-	fi
+	flash:
+	@echo "Building before flashing..."
+	$(MAKE) -j15 all
 	@echo "Flashing $(ELF_FILE) to target..."
 	openocd -s $(OPENOCD_SCRIPT_DIR) \
         -f $(INTERFACE_SCRIPT) \
